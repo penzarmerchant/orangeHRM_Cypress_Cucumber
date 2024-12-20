@@ -6,15 +6,10 @@ Given(/^User is on the login page$/, () => {
 	cy.visit('https://opensource-demo.orangehrmlive.com/');
 });
 
-When(/^User enters valid credentials$/, () => {
-	cy.get('input[name="username"]').type('Admin');
-    cy.get('input[name="password"]').type('admin123');
-});
 
-
-When(/^User enters invalid credentials$/, () => {
-	cy.get('input[name="username"]').type('AdminA');
-    cy.get('input[name="password"]').type('admin1');
+When(/^User enter credentials$/, (dataTable) => {
+	cy.get('input[name="username"]').type(dataTable.rawTable[1][0]);
+    cy.get('input[name="password"]').type(dataTable.rawTable[1][1]);
 });
 
 
