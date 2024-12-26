@@ -80,6 +80,12 @@ class BasePage {
         return element;
     }
 
+     // Method to check if the element is visible
+     b_clearText(locator, typeOfLocator = BasePage.LocatorTypes.CSS) {
+        this.#waitForElement(locator, typeOfLocator).clear();
+    }
+
+
 }
 
 export default BasePage;

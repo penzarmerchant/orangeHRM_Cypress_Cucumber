@@ -15,21 +15,25 @@ class MyInfoPage extends BasePage{
     }
 
     enterFirstName(firstNameText){
+        this.b_clearText(this.firstNameTextBox);
         this.b_fillText(this.firstNameTextBox,firstNameText);
         return this;
     }
 
-    enterSecondName(middleNameText){
+    enterMiddleName(middleNameText){
+        this.b_clearText(this.middleNameTextBox);
         this.b_fillText(this.middleNameTextBox,middleNameText);
         return this;
     }
 
     enterlastName(lastNameText){
+        this.b_clearText(this.lastNameTextbox);
         this.b_fillText(this.lastNameTextbox,lastNameText);
         return this;
     }
 
     enterEmployeeId(employeeIdNumber){
+        this.b_clearText(this.employeeIdTextbox,BasePage.LocatorTypes.XPATH);
         this.b_fillText(this.employeeIdTextbox,employeeIdNumber,BasePage.LocatorTypes.XPATH);
         return this;
     }

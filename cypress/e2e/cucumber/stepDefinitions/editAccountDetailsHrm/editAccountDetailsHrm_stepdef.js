@@ -1,30 +1,34 @@
 /// <reference types="cypress"/>
 import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps'
 
+import loginPage from '../../pages/loginPage'
+import myInfoPage from '../../pages/myInfoPage';
+import adminPage from '../../pages/adminPage';
+import dashBoardPage from '../../pages/dashBoardPage';
 
 Given(/^User is on the dashboard page$/, () => {
 	cy.fixture('orangeHrm').then((data)=>{
-		cy.visit('https://opensource-demo.orangehrmlive.com/');
-		cy.get('input[name="username"]').type(data.username);
-		cy.get('input[name="password"]').type(data.password);
-		cy.get('button[type="submit"]').click();
+		loginPage.b_navigateTo('https://opensource-demo.orangehrmlive.com/')
+		loginPage.completeLogin(data.username,data.password);
 	})
-	
 });
 
 When(/^User clicks on my info tab$/, () => {
-	cy.get('.oxd-main-menu-item--name').contains('My Info').click();
+	dashBoardPage.clickMyInfoTab();
 });
 
 When(/^User edits the required personal details$/, () => {
-	cy.get('input[name="firstName"]').type('Suresh');
-	
+	cy.wait(2000);
+	myInfoPage.enterFirstName('Gautam');
+	myInfoPage.enterMiddleName('Girish');
+	myInfoPage.enterlastName('Shah');
+	myInfoPage.enterEmployeeId('EMP09974');
 });
 
 When(/^User clicks on save$/, () => {
-	cy.get('button[type="submit"]:nth-child(2)').click();
+	myInfoPage.clickSaveButton();
 });
 
 Then(/^User is able to view toast message$/, () => {
-	cy.get('.oxd-toast-content-text').contains('Success');
+	myInfoPage.getSuccessMessage().should('equal','Success');
 });

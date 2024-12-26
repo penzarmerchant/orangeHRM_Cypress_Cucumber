@@ -30,6 +30,11 @@ class LoginPage extends BasePage{
       return this.b_getText(this.errorMessage);
     }
 
+    completeLogin(userNameText,passwordText){
+        this.enterUserName(userNameText);
+        this.enterPassword(passwordText);
+        this.clickLogin()
+    }
     
 }
 
