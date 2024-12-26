@@ -1,19 +1,21 @@
 /// <reference types="cypress"/>
-import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps'
+import { When, Then } from 'cypress-cucumber-preprocessor/steps'
 
+import dashBoardPage from '../../pages/dashBoardPage';
+import adminPage from '../../pages/adminPage';
 
 When(/^User navigates to Admin Tab$/, () => {
-	cy.get('.oxd-main-menu-item').contains('Admin').click();
+	dashBoardPage.clickAdminTab();
 });
 
 When(/^User searchers with username$/, () => {
-	cy.get('.oxd-input:nth-child(1)').type('shula1');
+	adminPage.enterUserName('FMLName');
 });
 
 When(/^User clicks on search button$/, () => {
-	cy.get('button[type="submit"]').click();
-});
+	adminPage.clickSearchButton();
+})
 
 Then(/^User should be displayed searching results$/, () => {
-        cy.get('.oxd-text--span').contains('(1) Record Found').should('be.visible');
+		adminPage.getSuccessMessage().should('equal','(1) Record Found');
 });

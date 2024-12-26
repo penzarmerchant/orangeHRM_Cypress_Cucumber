@@ -17,8 +17,8 @@ class AdminPage extends BasePage{
     }
 
     
-    clickSaveButton(){
-        this.b_clickElement(this.searchButtonButton);
+    clickSearchButton(){
+        this.b_clickElement(this.searchButton);
         return this;
 
     }
