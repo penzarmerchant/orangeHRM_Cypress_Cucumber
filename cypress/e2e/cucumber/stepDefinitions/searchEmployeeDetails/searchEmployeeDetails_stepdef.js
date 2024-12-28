@@ -9,7 +9,9 @@ When(/^User navigates to Admin Tab$/, () => {
 });
 
 When(/^User searchers with username$/, () => {
-	adminPage.enterUserName('FMLName');
+	adminPage.getFirstUserNameText().then((userNameText)=>{
+		adminPage.enterUserName(userNameText);
+	})
 });
 
 When(/^User clicks on search button$/, () => {
