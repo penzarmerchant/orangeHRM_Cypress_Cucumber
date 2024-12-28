@@ -3,8 +3,11 @@ import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps'
 
 import loginPage from '../../pages/loginPage'
 import myInfoPage from '../../pages/myInfoPage';
-import adminPage from '../../pages/adminPage';
 import dashBoardPage from '../../pages/dashBoardPage';
+
+before(function () {
+	cy.task('generateMockDataTask');
+})
 
 Given(/^User is on the dashboard page$/, () => {
 	cy.fixture('orangeHrm').then((data)=>{
@@ -18,11 +21,12 @@ When(/^User clicks on my info tab$/, () => {
 });
 
 When(/^User edits the required personal details$/, () => {
-	cy.wait(2000);
-	myInfoPage.enterFirstName('Gautam');
-	myInfoPage.enterMiddleName('Girish');
-	myInfoPage.enterlastName('Shah');
-	myInfoPage.enterEmployeeId('EMP09974');
+	cy.fixture('accountdetails').then((UserDetails)=>{
+	myInfoPage.enterFirstName(UserDetails.accountdetails[0]);
+	myInfoPage.enterMiddleName(UserDetails.accountdetails[1]);
+	myInfoPage.enterlastName(UserDetails.accountdetails[2]);
+	})
+	
 });
 
 When(/^User clicks on save$/, () => {
