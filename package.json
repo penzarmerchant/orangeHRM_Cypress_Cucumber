@@ -3,20 +3,31 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress run",
+    "pretest":"rimraf cypress/e2e/cucumber/report && mkdirp cypress/e2e/cucumber/report",
+    "posttest":"node ./cucumberHtml.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@faker-js/faker": "^9.3.0",
     "cypress": "^13.17.0",
     "cypress-cucumber-preprocessor": "^4.3.1",
     "cypress-xpath": "^2.0.1",
-    "@faker-js/faker": "^9.3.0"
+    "mkdirp": "^3.0.1",
+    "multiple-cucumber-html-reporter": "^3.8.0",
+    "rimraf": "^6.0.1"
   },
-  "cypress-cucumber-preprocessor":{
-    "nonGlobalStepdefinitions":false,
-    "step_definitions":"cypress/e2e/cucumber/stepDefinitions/*"
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepdefinitions": false,
+    "step_definitions": "cypress/e2e/cucumber/stepDefinitions/*",
+    "cucumberJson": {
+      "generate": true,
+      "outputFolder": "cypress/e2e/cucumber/report/cucumberJson",
+      "filePrefix": "",
+      "fileSuffix": ".cucumber"
+    }
   }
 }
