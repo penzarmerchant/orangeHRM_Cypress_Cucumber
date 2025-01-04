@@ -21,6 +21,10 @@ class BasePage {
         this.#waitForElement(locator, typeOfLocator).click({force:true});
     }
 
+    b_checkElement(locator, typeOfLocator = BasePage.LocatorTypes.CSS) {
+        this.#waitForElement(locator, typeOfLocator).check({force:true});
+    }
+
     // Method to fill the textbox
     b_fillText(locator, textToEnter, typeOfLocator = BasePage.LocatorTypes.CSS) {
         this.#waitForElement(locator, typeOfLocator).type(textToEnter);
