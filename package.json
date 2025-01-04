@@ -5,7 +5,7 @@
   "scripts": {
     "spec": "cypress run",
     "pretest":"rimraf cypress/e2e/cucumber/report && mkdirp cypress/e2e/cucumber/report",
-    "posttest":"node ./cucumberHtml.js",
+    "posttest":"node ./cypress/e2e/cucumber/reporting/reportGenerate.js",
     "test":"npm run spec || npm run posttest"
   },
   "keywords": [],
